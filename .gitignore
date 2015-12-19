@@ -79,53 +79,47 @@ public class lEXICO {
 			for (int op = 0; op < 8; op++) {
 				switch (op) {
 				case 0:
-					
 					if(tipo.esTipoDato(lexema))
 					{
-						ingreso=lexema;
-						token="Dato";
-						lexico.add(ingreso+" "+token);
-						op=6;
-						
+					ingreso=lexema;
+					token="Dato";
+					lexico.add(ingreso+" "+token);
+					op=6;
 					}
 					break;
-			case 1:
+		         	case 1:
 				if(Ident.esIdentificador(lexema))
 					{
-						ingreso=lexema;
-						token="ident";
-						lexico.add(ingreso+" "+token);
-						op=6;
+					ingreso=lexema;
+					token="ident";
+					lexico.add(ingreso+" "+token);
+					op=6;
 					}
 				break;
 			case 2:
-					
-				if(lexema.equals(";"))
+			if(lexema.equals(";"))
 					{
-						ingreso=lexema;
-						token=";";
-						lexico.add(ingreso+" "+token);
-						op=6;
+					ingreso=lexema;
+					token=";";
+					lexico.add(ingreso+" "+token);
+					op=6;
 					}
 				break;
 			case 3:
-					
 				if(lexema.equals("="))
 				{
-					ingreso=lexema;
-					token="=";
-					lexico.add(ingreso+" "+token);
-					op=6;
+				ingreso=lexema;
+				token="=";
+				lexico.add(ingreso+" "+token);
+				op=6;
 				}
-				
-				break;
+		break;
 			case 5:
 				System.out.print("Error lexico");
 				break;
 				}
 			}
 		}
-
-		}
 	}
+		}
 }
