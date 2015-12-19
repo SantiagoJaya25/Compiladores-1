@@ -3,3 +3,129 @@
   Integrantes: Guaraca Oscar
                Jaya Santiago
   Tema: Analizador Lexico    */
+// Ejercicio en Clases
+//Fecha: 18.Dic.2015
+//Ejemplo de analizador sintactico
+
+
+// Metodos usados para el analizador sintactico
+
+// CLASE IDENTIFICADOR
+
+public class Ident {
+
+	public boolean esIdent(String texto) {
+		boolean res = false;
+		String patron = ""[a-z]+";
+	        String patron =	"[_|a-z|A-Z][a-z|A-Z|0-9|_]*";
+                String patron = "0|[1-9][0-9]*";
+                String patron = "[0-9][0-9]*"."[0-9]+";
+                String patron = " ("+" | "-" | "*" | "/")";
+		TipoDato tipo= new TipoDato();
+		Pattern LX = Pattern.compile(patron);
+		
+		Matcher matcher = p.matcher(texto);
+		if (matcher.matches() && (tipo.esTipoDato(texto)==false)) {
+			respuesta = true;
+		}
+		return respuesta;
+	}
+
+}
+
+// Metodo Tabla Datos
+
+public TablaDatos() {
+		super();
+		this.Datos = Datos;
+	}
+
+//Metodo Sintactico
+
+public class Sintatico {
+	private lEXICO lexico = new lEXICO();
+	private ArrayList<String> sintatico= new ArrayList<String>();
+
+
+
+//ANALISIS LEXICO
+
+public class lEXICO {
+	File lex = new File("prueba");
+	private BufferedReader INGRESAR;
+	private ArrayList<String> lexico = new ArrayList<String>();
+
+	public lEXICO() throws IOException {
+		super();
+		
+		INGRESAR = new BufferedReader(new FileReader(lex));
+	}
+	
+	
+	public void analizarCodigo() throws IOException {
+	String linea, lexema = "", ingreso, token;
+	TipoDato tipo= new TipoDato();
+	Identificador Ident = new Identificador();
+	int contLinea = 0;
+	while (INGRESAR.ready()) {
+		contLinea++;
+		linea = INGRESAR.readLine();
+		linea.trim();
+		StringTokenizer tokens = new StringTokenizer(linea);
+		while(tokens.hasMoreTokens())
+		{
+			lexema=tokens.nextToken();
+			
+			for (int op = 0; op < 8; op++) {
+				switch (op) {
+				case 0:
+					
+					if(tipo.esTipoDato(lexema))
+					{
+						ingreso=lexema;
+						token="Dato";
+						lexico.add(ingreso+" "+token);
+						op=6;
+						
+					}
+					break;
+			case 1:
+				if(Ident.esIdentificador(lexema))
+					{
+						ingreso=lexema;
+						token="ident";
+						lexico.add(ingreso+" "+token);
+						op=6;
+					}
+				break;
+			case 2:
+					
+				if(lexema.equals(";"))
+					{
+						ingreso=lexema;
+						token=";";
+						lexico.add(ingreso+" "+token);
+						op=6;
+					}
+				break;
+			case 3:
+					
+				if(lexema.equals("="))
+				{
+					ingreso=lexema;
+					token="=";
+					lexico.add(ingreso+" "+token);
+					op=6;
+				}
+				
+				break;
+			case 5:
+				System.out.print("Error lexico");
+				break;
+				}
+			}
+		}
+
+		}
+	}
+}
